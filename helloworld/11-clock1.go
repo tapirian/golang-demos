@@ -7,6 +7,8 @@ import (
 	"time"
 )
 
+// 运行：
+// go build 11-clock1.go && ./11-clock1 && telnet 127.0.0.1 8000
 func main() {
 	listener, err := net.Listen("tcp", "127.0.0.1:8000")
 	if err != nil {
