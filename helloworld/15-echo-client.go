@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -13,7 +15,14 @@ func main() {
 		log.Fatal(err)
 	}
 	defer conn.Close()
-	go mustCopy(os.Stdout, conn)
+
+	go func() {
+		scanner := bufio.NewScanner(conn)
+		for scanner.Scan() {
+			fmt.Printf("server说：%s\n", scanner.Text())
+		}
+	}()
+
 	mustCopy(conn, os.Stdin)
 }
 

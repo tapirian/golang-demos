@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -19,6 +20,8 @@ func main() {
 			log.Fatal(err)
 			continue
 		}
+		fmt.Printf("run: %v\n", conn.LocalAddr())
+		fmt.Printf("client on: %v\n", conn.RemoteAddr())
 		go handleConn(conn)
 	}
 }
@@ -26,7 +29,7 @@ func main() {
 func handleConn(conn net.Conn) {
 	defer conn.Close()
 	for {
-		_, err := io.WriteString(conn, time.Now().Format("2016-01-02 15:04:05\n"))
+		_, err := io.WriteString(conn, time.Now().Format("2006-01-02 15:04:05\n"))
 		if err != nil {
 			return
 		}

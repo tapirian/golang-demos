@@ -14,16 +14,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
-			log.Print(err)
+			log.Fatal(err)
 			continue
 		}
 		handle(conn)
 	}
-
 }
 
 func handle(conn net.Conn) {
@@ -31,8 +29,9 @@ func handle(conn net.Conn) {
 	for {
 		_, err := io.WriteString(conn, time.Now().Format("15:04:05\n"))
 		if err != nil {
+			log.Fatal(err)
 			return
 		}
-		time.Sleep(1 * time.Second)
+		time.Sleep(time.Second * 1)
 	}
 }

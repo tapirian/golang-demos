@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -13,7 +14,8 @@ func main() {
 		panic(err)
 	}
 	defer conn.Close()
-
+	fmt.Printf("client on: %v\n", conn.LocalAddr())
+	fmt.Printf("server on: %v\n", conn.RemoteAddr())
 	mustCopy(os.Stdout, conn)
 }
 

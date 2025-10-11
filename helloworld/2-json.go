@@ -6,13 +6,14 @@ import (
 )
 
 type Person struct {
-	Name string `json:"name,omitempty"`
+	Name  string `json:"name,omitempty"`
+	PName string `json:"pname,omitempty"`
 }
 
 func main() {
-	zhangsan := &Person{Name: "zhangsan"}
+	zhangsan := &Person{Name: "zhangsan", PName: "zhangsansan"}
 	j, _ := json.Marshal(zhangsan)
-	j1, _ := json.MarshalIndent(zhangsan, "", " ")
+	j1, _ := json.MarshalIndent(zhangsan, "", "")
 
 	var d = &Person{}
 	json.Unmarshal(j, d)
