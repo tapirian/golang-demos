@@ -1,0 +1,23 @@
+syntax = "v1"
+
+info (
+	title:   "User API"
+	desc:    "用户服务接口"
+	author:  "HAITUO"
+	version: "1.0"
+)
+
+type (
+	UserReq {
+		Name string `form:"name"`
+	}
+	UserResp {
+		Message string `json:"message"`
+	}
+)
+
+service user-api {
+	@handler Greet
+	get /api/user/greet (UserReq) returns (UserResp)
+}
+
