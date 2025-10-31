@@ -1,0 +1,9 @@
+kind: reverse
+name: test
+source:
+  database: sqlite3
+  conn_str: "./test.db"
+targets:
+  - type: codes
+    language: golang
+    output_dir: ./models
